@@ -14,6 +14,18 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/actions/:id", (req, res) => {
+    const id = req.params.id;
+    
+  Projects.getProjectActions(id)
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Unable to retrieve." });
+    });
+});
+
 router.post("/", (req, res) => {
   const body = req.body;
   Projects.insert(body)
