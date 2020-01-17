@@ -21,7 +21,20 @@ router.post('/', (req, res) => {
         res.status(200).json(data);
     })
     .catch(err => {
-        res.status(500).json({message: "Unable to retrieve."});
+        res.status(500).json({message: "Unable to add new project."});
+    })
+})
+
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
+    const body = req.body;
+
+    Projects.update(id, body)
+    .then(data => {
+        res.status(200).json(data);
+    })
+    .catch(err => {
+        res.status(500).json({message: "Unable to make changes."});
     })
 })
 
