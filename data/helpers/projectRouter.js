@@ -14,4 +14,15 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+    const body = req.body;
+    Projects.insert(body)
+    .then(data => {
+        res.status(200).json(data);
+    })
+    .catch(err => {
+        res.status(500).json({message: "Unable to retrieve."});
+    })
+})
+
 module.exports = router;
