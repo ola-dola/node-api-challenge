@@ -16,6 +16,11 @@ router.get("/", (req, res) => {
     );
 });
 
+// Fetch specific project
+router.get("/:projectId", validateProjId, (req, res) => {
+  res.status(200).json(req.project);
+});
+
 // Create project
 router.post("/", validateProject, (req, res) => {
   projDb
@@ -29,9 +34,9 @@ router.post("/", validateProject, (req, res) => {
 });
 
 // Update project
-router.put("/:id", validateProjId, validateProject, (req, res) => {
+router.put("/:projectId", validateProjId, validateProject, (req, res) => {
   projDb
-    .update(req.params.id, req.body)
+    .update(req.params.projectId, req.body)
     .then((data) => {
       res.status(200).json(data);
     })
@@ -41,9 +46,9 @@ router.put("/:id", validateProjId, validateProject, (req, res) => {
 });
 
 // Remove project
-router.delete("/:id", validateProjId, (req, res) => {
+router.delete("/:projectId", validateProjId, (req, res) => {
   projDb
-    .remove(req.params.id)
+    .remove(req.params.projectId)
     .then((data) => {
       res.status(200).json({ message: "project removed", data: req.project });
     })

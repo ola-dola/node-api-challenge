@@ -9,7 +9,7 @@ server.use(express.json());
 server.use(helmet());
 
 server.use("/api/projects", projectsRouter);
-server.use("/api/actions", actionsRouter);
+server.use("/api/projects/:projectId/actions", actionsRouter);
 
 server.get("*", (req, res) => {
   res.send("App is live");
